@@ -10,13 +10,12 @@ jobs:
   # ===== 原有任务：每小时抓取 RSS 并推送 =====
   rss-feed:
     runs-on: ubuntu-latest
-    # 如果是定时触发且时间为每小时，或者手动触发，则运行
     if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 * * * *'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4          # 从 v3 升级到 v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5      # 从 v4 升级到 v5
         with:
           python-version: '3.12'
 
@@ -33,13 +32,12 @@ jobs:
   # ===== 新增任务：每周一早上8点发送供应商名录 =====
   send-suppliers:
     runs-on: ubuntu-latest
-    # 如果是定时触发且为周一8点，或者手动触发，则运行
     if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0 8 * * 1'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4          # 从 v3 升级到 v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5      # 从 v4 升级到 v5
         with:
           python-version: '3.12'
 
